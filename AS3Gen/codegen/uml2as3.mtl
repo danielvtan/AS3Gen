@@ -49,13 +49,12 @@ package {
 [/template]
 
 [template public gen(o : Operation)]
-	[o.header()/]
+	
 	[if (not o.ownedComment->isEmpty())]
 		/*
 			comment todo
 		*/
 	[/if]
-	[o.bodyOperation()/]	
 [/template]
 
 
