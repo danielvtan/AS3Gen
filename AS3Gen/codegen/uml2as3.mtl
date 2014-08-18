@@ -3,16 +3,22 @@
 
 [template public generate(p : Package)]
 [comment @main/]
-[file (p.name.concat('.as'), false, 'UTF-8')]
-...
+[file (p.name.concat('.txt'), false, 'UTF-8')]
+
+[genClassif()/]
+
 [/file]
 [/template]
 
-
 [template public genClassif(c : Class)]
-[c.visibility/] class [c.name/] {
+[file (c.name.concat('.as'), false, 'UTF-8')]
+package
+{
+	[c.visibility/] class [c.name/] {
 
+	}
 }
+[/file]
 [/template] 
 
 
