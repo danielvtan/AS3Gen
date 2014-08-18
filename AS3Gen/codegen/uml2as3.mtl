@@ -29,8 +29,17 @@
 [/file]
 [/template]
 
-[template public genClassif(e : Classifier)]
-......
+[template public genClassif(c : Classifier)]
+[file (c.name.concat('.as'), false, 'UTF-8')]
+package {
+	
+	public class [c.name/] {
+	
+	}
+
+
+}
+[/file]
 [/template] 
 
 
