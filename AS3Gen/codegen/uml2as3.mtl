@@ -33,14 +33,30 @@
 [file (c.name.concat('.as'), false, 'UTF-8')]
 package {
 	
+	[if (not c.ownedOperation->isEmpty())]
+		[for (ops : Operation | c.ownedOperation)]
+			[ops.gen()/]
+		[/for]
+	[/if]
+
 	public class [c.name/] {
-	
+
 	}
 
 
 }
 [/file]
-[/template] 
+[/template]
+
+[template public gen(o : Operation)]
+	[o.header()/]
+	[if (not o.ownedComment->isEmpty())]
+		/*
+			comment todo
+		*/
+	[/if]
+	[o.bodyOperation()/]	
+[/template]
 
 
 
