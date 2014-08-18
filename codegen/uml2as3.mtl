@@ -1,5 +1,4 @@
 [comment encoding = UTF-8 /]
-[module uml2as3('http://www.eclipse.org/uml2/4.0.0/UML')]
 
 [template public generate(p : Package)]
 [comment @main/]
@@ -7,15 +6,3 @@
 ...
 [/file]
 [/template]
-
-[template public genClassif(e : Enumeration)]
-class [e.name/]:
-      [if (not e.ownedComment->isEmpty())]
-  """
-  [e.ownedComment.genComment(' ')/]
-  """
-  [/if]
-  	[if (not e.ownedLiteral->isEmpty())]
-  	[for (lit : EnumerationLiteral | e.ownedLiteral) separator(', ')][lit.name/][/for] = range([e.ownedLiteral->size()/])
-  [/if]
-[/template] 
