@@ -10,10 +10,10 @@
  * @param c UML Class.
 */]
 [template public generate(c : Class)]
-	[comment @main/]
-	[file (c.qualifiedName.path().concat('.php'), false, 'UTF-8')]
-		[c.genClass()/]
-	[/file]
+[comment @main/]
+[file (c.qualifiedName.path().concat('.php'), false, 'UTF-8')]
+[c.genClass()/]
+[/file]
 [/template]
 
 [**
@@ -21,10 +21,10 @@
  * @param m UML Model.
 */]
 [template public generate(m : Model)]
-	[comment @main/]
-	[file ('Main.php', false, 'UTF-8')]
-		/* Generated from GenMyModel */
-	[/file]
+[comment @main/]
+[file ('Main.php', false, 'UTF-8')]
+	/* Generated from GenMyModel */
+[/file]
 [/template]
 
 [**
@@ -37,10 +37,9 @@ package {
 
 	/* Generated from GenMyModel */
 
-	public class [c.name/] extends [c.general->any(true).name/] {
+	public class [c.name/] [c.generalization.genGeneralization()/] {
 		[c.attribute.genAttribute()/]
 	}
-
 [/template]
 
 [**
@@ -50,6 +49,14 @@ package {
 */]
 [template public genAttribute(p : Property)]
 	[if (p.visibility <> VisibilityKind::_package )][p.visibility/][else]protected[/if] var [p.name/];
+[/template]
+
+[**
+ * Generates class inheritance (i.e., when a class inherits from an other one).
+ * @param g UML Generalization (Generalisation is the ineheritance link between two classes or two interfaces).
+*/]
+[template public genGeneralization(g : Generalization)]
+ extends [g.general->any(true).name/]
 [/template]
 
 [**
