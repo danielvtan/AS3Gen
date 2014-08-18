@@ -16,7 +16,7 @@
 	[for (e : Classifier | m.ownedElement->filter(Classifier)
 							->select(c | nonInherit->excludes(c))
 							->sortedBy(getAllUsedInterfaces()->union(getGenerals())->size()))]
-	[e.genClassif()/]
+	[e.genClassif(e)/]
 	[/for]
 	[/let]
 
