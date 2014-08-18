@@ -4,29 +4,13 @@
 [template public generate(p : Package)]
 [comment @main/]
 [file (p.name.concat('.as'), false, 'UTF-8')]
+	---
+	[p.genClassif()/]
 
-	[comment Generate code for classes/interfaces /]
-	[let nonInherit : Set(Classifier) = 
-		p.ownedElement->
-			filter(Classifier)->
-				select(generalization->isEmpty())->reject(oclIsKindOf(Class) and not oclAsType(Class).interfaceRealization->isEmpty())]
-	[for (e : Classifier | nonInherit->sortedBy(not oclIsKindOf(Enumeration)))]
-	[e.genClassif()/]
-	[/for]
-	[for (e : Classifier | p.ownedElement->filter(Classifier)
-							->select(c | nonInherit->excludes(c))
-							->sortedBy(getAllUsedInterfaces()->union(getGenerals())->size()))]
-	[e.genClassif(e)/]
-	[/for]
 	[/let]
 
-	[template public genClassif(c : Classifier)]
-	package
-	{
-		[c.visibility/] class [c.name/] {
-
-		}
-	}
+	[template public genClassif()]
+	......
 	[/template] 
 
 
