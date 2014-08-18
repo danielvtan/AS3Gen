@@ -20,18 +20,20 @@
 	[/for]
 	[/let]
 
+	[template public genClassif(c : Class)]
+	package
+	{
+		[c.visibility/] class [c.name/] {
+
+		}
+	}
+	[/template] 
+
+
 [/file]
 [/template]
 
 
-[template public genClassif(c : Class)]
-package
-{
-	[c.visibility/] class [c.name/] {
-
-	}
-}
-[/template] 
 
 
 
