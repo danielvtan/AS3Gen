@@ -5,9 +5,20 @@
 [comment @main/]
 [file (p.name.concat('.as'), false, 'UTF-8')]
 
-[for (e : Classifier)]
+	[comment Generate code for classes/interfaces /]
+	[let nonInherit : Set(Classifier) = 
+		m.ownedElement->
+			filter(Classifier)->
+				select(generalization->isEmpty())->reject(oclIsKindOf(Class) and not oclAsType(Class).interfaceRealization->isEmpty())]
+	[for (e : Classifier | nonInherit->sortedBy(not oclIsKindOf(Enumeration)))]
 	[e.genClassif()/]
-[/for]
+	[/for]
+	[for (e : Classifier | m.ownedElement->filter(Classifier)
+							->select(c | nonInherit->excludes(c))
+							->sortedBy(getAllUsedInterfaces()->union(getGenerals())->size()))]
+	[e.genClassif()/]
+	[/for]
+	[/let]
 
 [/file]
 [/template]
