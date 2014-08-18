@@ -7,3 +7,18 @@
 ...
 [/file]
 [/template]
+
+
+[template public genClassif(c : Class)]
+[e.visibility/] class [e.name/] {
+  [if (not e.ownedComment->isEmpty())]
+  """
+  [e.ownedComment.genComment(' ')/]
+  """
+}
+[/template] 
+
+
+
+
+
