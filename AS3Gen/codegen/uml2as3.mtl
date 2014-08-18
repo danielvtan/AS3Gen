@@ -5,9 +5,7 @@
 [comment @main/]
 [file (p.name.concat('.as'), false, 'UTF-8')]
 	---
-	[p.genClassif()/]
-
-	[/let]
+	[genClassif()/]
 
 	[template public genClassif()]
 	......
