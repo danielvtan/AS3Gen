@@ -37,7 +37,7 @@ package {
 
 	/* Generated from GenMyModel */
 
-	public class [c.name/] extends [g.general->any(true).name/] {
+	public class [c.name/] extends [c.general->any(true).name/] {
 		[c.attribute.genAttribute()/]
 	}
 
