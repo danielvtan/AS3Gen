@@ -19,7 +19,7 @@
 [/template]
 
 
-[template public genClassif(c : Classifier)]
+[template public genClass(c : Class)]
 [file (c.name.concat('.as'), false, 'UTF-8')]
 package {
 	
