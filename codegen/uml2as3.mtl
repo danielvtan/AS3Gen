@@ -7,3 +7,15 @@
 ...
 [/file]
 [/template]
+
+[template public genClassif(e : Enumeration)]
+class [e.name/]:
+      [if (not e.ownedComment->isEmpty())]
+  """
+  [e.ownedComment.genComment(' ')/]
+  """
+  [/if]
+  	[if (not e.ownedLiteral->isEmpty())]
+  	[for (lit : EnumerationLiteral | e.ownedLiteral) separator(', ')][lit.name/][/for] = range([e.ownedLiteral->size()/])
+  [/if]
+[/template] 

@@ -1,4 +1,4 @@
 <generator>
-    <name>my-gen</name>
+    <name>AS3Gen</name>
     <m2t name="uml2as3.mtl" bypass="false" />
  </generator>
