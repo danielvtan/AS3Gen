@@ -3,41 +3,27 @@
 
 [template public generate(m : Package)]
 [comment @main/]
-[file (m.name.concat('.as'), false, 'UTF-8')]
-	---
-	[comment Generate code for classes/interfaces /]
-	[let nonInherit : Set(Classifier) = 
-		m.ownedElement->
-			filter(Classifier)->
-				select(generalization->isEmpty())->reject(oclIsKindOf(Class) and not oclAsType(Class).interfaceRealization->isEmpty())]
-	
-	[for (e : Classifier | nonInherit->sortedBy(not oclIsKindOf(Enumeration)))]
-		[e.genClassif()/]
-	[/for]
-	
-	[for (e : Classifier | m.ownedElement->filter(Classifier)
-							->select(c | nonInherit->excludes(c))
-							->sortedBy(getAllUsedInterfaces()->union(getGenerals())->size()))]
-		[e.genClassif()/]
-	[/for]
-	
-	[/let]
+	[file (m.name.concat('.txt'), false, 'UTF-8')]
+	/*
+		Generated
+	*/
 
-	
-
-
-[/file]
+	[/file]
 [/template]
+
+[template public generate(c : Class)]
+[comment @main/]
+	[file (c.qualifiedName.path().concat('.as'), false, 'UTF-8')]
+		[c.genClass()/]
+	[/file]
+[/template]
+
 
 [template public genClassif(c : Classifier)]
 [file (c.name.concat('.as'), false, 'UTF-8')]
 package {
 	
-	[if (not c.ownedOperation->isEmpty())]
-		[for (ops : Operation | c.ownedOperation)]
-			[ops.gen()/]
-		[/for]
-	[/if]
+	[c.attribute.genAttribute()/]
 
 	public class [c.name/] {
 
@@ -48,13 +34,8 @@ package {
 [/file]
 [/template]
 
-[template public gen(o : Operation)]
-	
-	[if (not o.ownedComment->isEmpty())]
-		/*
-			comment todo
-		*/
-	[/if]
+[template public genAttribute(p : Property)]
+	[if (p.visibility <> VisibilityKind::_package )][p.visibility/] public [else]protected [/if] [p.name/];
 [/template]
 
 
