@@ -5,7 +5,7 @@
 [comment @main/]
 [file (p.name.concat('.txt'), false, 'UTF-8')]
 
-[genClassif()/]
+[p.genClassif()/]
 
 [/file]
 [/template]
