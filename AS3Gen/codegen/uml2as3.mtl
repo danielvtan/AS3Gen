@@ -13,7 +13,7 @@
 
 [template public generate(c : Class)]
 [comment @main/]
-	[file (c.qualifiedName.path().concat('.as'), false, 'UTF-8')]
+	[file (c.name.concat('.as'), false, 'UTF-8')]
 		[c.genClass()/]
 	[/file]
 [/template]
