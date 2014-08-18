@@ -7,13 +7,15 @@
 	---
 	[genClassif()/]
 
-	[template public genClassif()]
-	......
-	[/template] 
+	
 
 
 [/file]
 [/template]
+
+[template public genClassif()]
+......
+[/template] 
 
 
 
