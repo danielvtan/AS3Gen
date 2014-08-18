@@ -20,7 +20,7 @@
 	[/for]
 	[/let]
 
-	[template public genClassif(c : Class)]
+	[template public genClassif(c : Classifier)]
 	package
 	{
 		[c.visibility/] class [c.name/] {
