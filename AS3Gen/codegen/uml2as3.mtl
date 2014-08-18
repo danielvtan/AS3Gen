@@ -11,11 +11,6 @@
 
 [template public genClassif(c : Class)]
 [c.visibility/] class [c.name/] {
-  [if (not c.ownedComment->isEmpty())]
-  """
-  [c.ownedComment.genComment(' ')/]
-  """
-  [/if]
 
 }
 [/template] 
