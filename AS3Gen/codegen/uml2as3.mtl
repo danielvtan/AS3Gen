@@ -3,15 +3,18 @@
 
 [template public generate(p : Package)]
 [comment @main/]
-[file (p.name.concat('.txt'), false, 'UTF-8')]
+[file (p.name.concat('.as'), false, 'UTF-8')]
 
-[p.genClassif()/]
+[for (e : Classifier | nonInherit->sortedBy(not oclIsKindOf(Enumeration)))]
+[e.genClassif()/]
+[/for]
 
 [/file]
 [/template]
 
+
 [template public genClassif(c : Class)]
-[file (c.name.concat('.as'), false, 'UTF-8')]
+[file (p.name.concat('.as'), false, 'UTF-8')]
 package
 {
 	[c.visibility/] class [c.name/] {
@@ -20,6 +23,7 @@ package
 }
 [/file]
 [/template] 
+
 
 
 
