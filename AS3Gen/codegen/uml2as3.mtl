@@ -6,7 +6,7 @@
 [file (p.name.concat('.as'), false, 'UTF-8')]
 
 [for (e : Classifier | nonInherit->sortedBy(not oclIsKindOf(Enumeration)))]
-[e.genClassif()/]
+	[e.genClassif()/]
 [/for]
 
 [/file]
@@ -14,14 +14,12 @@
 
 
 [template public genClassif(c : Class)]
-[file (p.name.concat('.as'), false, 'UTF-8')]
 package
 {
 	[c.visibility/] class [c.name/] {
 
 	}
 }
-[/file]
 [/template] 
 
 
