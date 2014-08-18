@@ -5,7 +5,7 @@
 [comment @main/]
 [file (p.name.concat('.as'), false, 'UTF-8')]
 
-[for (e : Classifier | nonInherit->sortedBy(not oclIsKindOf(Enumeration)))]
+[for (e : Classifier)]
 	[e.genClassif()/]
 [/for]
 
