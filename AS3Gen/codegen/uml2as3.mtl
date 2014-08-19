@@ -55,15 +55,7 @@ package {
 [/template]
 
 [template public genFunction(c : Class)]
-	[if (c.attribute->select((type <> null) and (name.isValid()))->exists(visibility = VisibilityKind::public))][VisibilityKind::public/] :
-	[for (p : Property | c.attribute)][if (p.visibility  = VisibilityKind::public)][p.type.name.toType().trim()/] [p.name/];['\n\t'/][/if][/for]
-	[/if]
-	[if (c.attribute->select((type <> null) and (name.isValid()))->exists(visibility = VisibilityKind::protected))][VisibilityKind::protected/] :
-		[for (p : Property | c.attribute)][if (p.visibility  = VisibilityKind::protected)][p.type.name.toType().trim()/] [p.name/];['\n\t'/][/if][/for]
-	[/if]
-	[if (c.attribute->select((type <> null) and (name.isValid()))->exists((visibility = VisibilityKind::private)or(visibility = VisibilityKind::_package)))][VisibilityKind::private/] :
-		[for (p : Property | c.attribute)][if ((visibility = VisibilityKind::private)or(visibility = VisibilityKind::_package))][p.type.name.toType().trim()/] [p.name/];['\n\t'/][/if][/for]
-	[/if]
+	[c.name/]
 [/template]
 
 [**
