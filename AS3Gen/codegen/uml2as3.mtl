@@ -11,7 +11,7 @@
 */]
 [template public generate(c : Class)]
 [comment @main/]
-[file (c.qualifiedName.path().concat('.php'), false, 'UTF-8')]
+[file (c.qualifiedName.path().concat('.as'), false, 'UTF-8')]
 [c.genClass()/]
 [/file]
 [/template]
@@ -22,7 +22,7 @@
 */]
 [template public generate(m : Model)]
 [comment @main/]
-[file ('Main.php', false, 'UTF-8')]
+[file ('Main.as', false, 'UTF-8')]
 	/* Generated from GenMyModel */
 [/file]
 [/template]
@@ -39,6 +39,7 @@ package {
 
 	public class [c.name/] [c.generalization.genGeneralization()/] {
 		[c.attribute.genAttribute()/]
+		[c.genFunction()/]
 		
 	}
 }
@@ -53,12 +54,16 @@ package {
 	[if (p.visibility <> VisibilityKind::_package )][p.visibility/][else]protected[/if] var [p.name/];['\n'/]
 [/template]
 
-[template public genFunction(p : Property)]
-	[if (p.visibility <> VisibilityKind::_package )][p.visibility/][else]protected[/if] function [p.name/]():void {
-		/*
-			todo
-		*/
-	};
+[template public genFunction(c : Class)]
+	[if (c.attribute->select((type <> null) and (name.isValid()))->exists(visibility = VisibilityKind::public))][VisibilityKind::public/] :
+	[for (p : Property | c.attribute)][if (p.visibility  = VisibilityKind::public)][p.type.name.toType().trim()/] [p.name/];['\n\t'/][/if][/for]
+	[/if]
+	[if (c.attribute->select((type <> null) and (name.isValid()))->exists(visibility = VisibilityKind::protected))][VisibilityKind::protected/] :
+		[for (p : Property | c.attribute)][if (p.visibility  = VisibilityKind::protected)][p.type.name.toType().trim()/] [p.name/];['\n\t'/][/if][/for]
+	[/if]
+	[if (c.attribute->select((type <> null) and (name.isValid()))->exists((visibility = VisibilityKind::private)or(visibility = VisibilityKind::_package)))][VisibilityKind::private/] :
+		[for (p : Property | c.attribute)][if ((visibility = VisibilityKind::private)or(visibility = VisibilityKind::_package))][p.type.name.toType().trim()/] [p.name/];['\n\t'/][/if][/for]
+	[/if]
 [/template]
 
 [**
