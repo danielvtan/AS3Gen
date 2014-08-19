@@ -55,7 +55,7 @@ package {
 [/template]
 
 [template public genAttribute(o : Operation)]
-	[c.name/]
+	[o.name/]
 [/template]
 
 [**
