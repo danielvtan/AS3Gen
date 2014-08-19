@@ -39,7 +39,6 @@ package {
 
 	public class [c.name/] [c.generalization.genGeneralization()/] {
 		[c.attribute.genAttribute()/]
-		[c.genFunction()/]
 		
 	}
 }
@@ -51,10 +50,11 @@ package {
  * @param p UML Property.
 */]
 [template public genAttribute(p : Property)]
+	[p.name/]
 	[if (p.visibility <> VisibilityKind::_package )][p.visibility/][else]protected[/if] var [p.name/];['\n'/]
 [/template]
 
-[template public genFunction(c : Class)]
+[template public genAttribute(o : Operation)]
 	[c.name/]
 [/template]
 
