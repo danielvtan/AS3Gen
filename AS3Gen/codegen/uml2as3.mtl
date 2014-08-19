@@ -39,7 +39,9 @@ package {
 
 	public class [c.name/] [c.generalization.genGeneralization()/] {
 		[c.attribute.genAttribute()/]
-		[c.operation.genOperation()/]
+		[for (o : Operation) | c.operation) ]
+		[o.type.name/] [o.name/] ([for(p:Parameter | o.parameter) separator(',')] [p.type/] [p.name/] [/for]);
+		[/for]
 	}
 }
 [/template]
