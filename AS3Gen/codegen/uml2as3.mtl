@@ -39,7 +39,9 @@ package {
 
 	public class [c.name/] [c.generalization.genGeneralization()/] {
 		[c.attribute.genAttribute()/]
+		[c.operation.genFunction()/]
 	}
+}
 [/template]
 
 [**
@@ -49,6 +51,14 @@ package {
 */]
 [template public genAttribute(p : Property)]
 	[if (p.visibility <> VisibilityKind::_package )][p.visibility/][else]protected[/if] var [p.name/];
+[/template]
+
+[template public genFunction(p : Property)]
+	[if (p.visibility <> VisibilityKind::_package )][p.visibility/][else]protected[/if] function [p.name/]():void {
+		/*
+			todo
+		*/
+	};
 [/template]
 
 [**
