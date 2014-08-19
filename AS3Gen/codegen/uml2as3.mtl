@@ -39,7 +39,7 @@ package {
 
 	public class [c.name/] [c.generalization.genGeneralization()/] {
 		[c.attribute.genAttribute()/]
-		
+		[c.operation.genOperation()/]
 	}
 }
 [/template]
@@ -54,7 +54,7 @@ package {
 	[if (p.visibility <> VisibilityKind::_package )][p.visibility/][else]protected[/if] var [p.name/];['\n'/]
 [/template]
 
-[template public genAttribute(o : Operation)]
+[template public genOperation(o : Operation)]
 	[o.name/]
 [/template]
 
